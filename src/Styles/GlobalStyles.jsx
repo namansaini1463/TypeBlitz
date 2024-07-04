@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
-//! Gloval Styles
+//! Global Styles
 body{
   background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.textColor};
