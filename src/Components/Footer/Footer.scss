@@ -1,0 +1,12 @@
+.footer {
+  width: 80vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .themes-select {
+    font-size: medium;
+    color: black;
+  }
+}

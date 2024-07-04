@@ -1,0 +1,23 @@
+.upper-menu {
+  display: flex;
+  // color: #f7f1e9;
+  align-items: center;
+  justify-content: space-between;
+
+  .counter {
+    justify-self: left;
+  }
+
+  .modes {
+    display: flex;
+    gap: 1.4rem;
+
+    // .time-mode {
+    //   cursor: pointer;
+    //   transition: all 250ms;
+    // }
+    // .time-mode:hover {
+    //   color: #ec4c56;
+    // }
+  }
+}

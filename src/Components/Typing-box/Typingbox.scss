@@ -1,0 +1,85 @@
+.type-box {
+  margin: 0 auto;
+  // color: #535a6a;
+
+  // .test-over {
+  //   color: #f7f1e9;
+  // }
+
+  .words {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80vw;
+    margin: 3rem auto 3rem;
+
+    .word {
+      margin: 0.25rem 0.5rem;
+      height: fit-content;
+    }
+  }
+
+  .hidden-input {
+    opacity: 0;
+  }
+
+  // .correct {
+  //   color: #f7f1e9;
+  // }
+
+  // .incorrect {
+  //   color: #ed4d56;
+  // }
+
+  // .current {
+  //   border-left: 1px solid white;
+  //   animation: blinking-cursor 2120ms ease infinite;
+
+  //   @keyframes blinking-cursor {
+  //     0% {
+  //       border-left-color: white;
+  //     }
+  //     25% {
+  //       border-left-color: transparent;
+  //     }
+  //     50% {
+  //       border-left-color: white;
+  //     }
+  //     75% {
+  //       border-left-color: transparent;
+  //     }
+  //     100% {
+  //       border-left-color: white;
+  //     }
+  //   }
+  // }
+
+  // .current-right {
+  //   border-right: 1px solid white;
+  //   animation: blinking-cursor-right 2120ms ease infinite;
+
+  //   @keyframes blinking-cursor-right {
+  //     0% {
+  //       border-right-color: white;
+  //     }
+  //     25% {
+  //       border-right-color: transparent;
+  //     }
+  //     50% {
+  //       border-right-color: white;
+  //     }
+  //     75% {
+  //       border-right-color: transparent;
+  //     }
+  //     100% {
+  //       border-right-color: white;
+  //     }
+  //   }
+  // }
+}
+
+@media only screen and (max-width: 800px) {
+  .type-box {
+    max-height: 65vh;
+    overflow-y: scroll;
+  }
+}
