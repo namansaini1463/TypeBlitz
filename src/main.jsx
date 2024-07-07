@@ -5,13 +5,16 @@ import "./index.scss";
 
 import { TestModeContextProvider } from "./Context/TestModeContext.jsx";
 import { ThemeContextProvider } from "./Context/ThemeContext.jsx";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ThemeContextProvider>
-      <TestModeContextProvider>
+  // <React.StrictMode>
+  <ThemeContextProvider>
+    <TestModeContextProvider>
+      <BrowserRouter>
         <App />
-      </TestModeContextProvider>
-    </ThemeContextProvider>
-  </React.StrictMode>
+      </BrowserRouter>
+    </TestModeContextProvider>
+  </ThemeContextProvider>
+  // </React.StrictMode>
 );

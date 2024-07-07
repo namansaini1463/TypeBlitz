@@ -2,6 +2,7 @@ import { generate } from "random-words";
 import { createRef, useEffect, useMemo, useRef, useState } from "react";
 
 import UpperMenu from "../Upper-menu/UpperMenu";
+import Stats from "../Stats/Stats";
 
 import "./Typingbox.scss";
 import { useMyTestMode } from "../../Context/TestModeContext";
@@ -15,6 +16,15 @@ function Typingbox() {
   const [testStart, setTestStart] = useState(false);
   const [testEnd, setTestEnd] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
+
+  const [correctCharsTyped, setCorrectCharsTyped] = useState(0);
+  const [incorrectCharsTyped, setIncorrectCharsTyped] = useState(0);
+  const [missedChars, setMissedChars] = useState(0);
+  const [extraCharsTyped, setExtraCharsTyped] = useState(0);
+  const [totalCharsTyped, setTotalCharsTyped] = useState(0);
+  const [correctWordsTyped, setCorrectWordsTyped] = useState(0);
+
+  const [graphData, setGraphData] = useState([]);
 
   const [words, setWords] = useState(() => {
     return generate(60);
@@ -34,10 +44,25 @@ function Typingbox() {
   //` Function to start the test as soon as the user starts typing
   const startTimer = () => {
     const interval = setInterval(timer, 1000);
+    // const interval = setInterval(timer, 100);
     setIntervalId(interval);
 
     function timer() {
       setCountDown((countDown) => {
+        setCorrectCharsTyped((correctCharsTyped) => {
+          setGraphData((graphData) => {
+            return [
+              ...graphData,
+              [
+                testTime - countDown + 1,
+                correctCharsTyped / 5 / ((testTime - countDown + 1) / 60),
+              ],
+            ];
+          });
+
+          return correctCharsTyped;
+        });
+
         if (countDown == 1) {
           setTestEnd(true);
           clearInterval(interval);
@@ -71,6 +96,20 @@ function Typingbox() {
     wordsRef[0].current.childNodes[0].className = "current";
   };
 
+  //`Function to Calculate Words Per Minute
+  const calculateWPM = () => {
+    return correctCharsTyped / 5 / (testTime / 60);
+  };
+  //`Function to Calculate RAW Words Per Minute
+  const calculateRawWPM = () => {
+    return totalCharsTyped / 5 / (testTime / 60);
+  };
+  //` Function to caluclate ACCURACY
+  const calculateAccuracy = () => {
+    return (correctWordsTyped / currentWordIndex) * 100;
+  };
+
+  //` Handling all keyboard inputs
   const handleUserInput = (e) => {
     //Starting the timer when the user starts typing and setting the testStart variable to true
     if (!testStart) {
@@ -81,11 +120,21 @@ function Typingbox() {
     const currentChars = wordsRef[currentWordIndex].current.childNodes;
     //`Handling the user input for SPACEBAR
     if (e.keyCode === 32) {
-      //removing the cursor
+      let correctCharsInWord =
+        wordsRef[currentWordIndex].current.querySelectorAll(".correct");
+      if (correctCharsInWord.length === currentChars.length) {
+        setCorrectWordsTyped((correctWordsTyped) => correctWordsTyped + 1);
+      }
+
       if (currentCharIndex === currentChars.length) {
+        //removing the cursor
         currentChars[currentCharIndex - 1].classList.remove("current-right");
       } else if (currentCharIndex < currentChars.length) {
         currentChars[currentCharIndex].classList.remove("current");
+        setMissedChars(
+          (missedChars) =>
+            missedChars + (currentChars.length - currentCharIndex)
+        );
       }
 
       wordsRef[currentWordIndex + 1].current.childNodes[0].className =
@@ -139,6 +188,8 @@ function Typingbox() {
         wordsRef[currentWordIndex].current.append(newLetter);
         //updating the length of the word
         setCurrentCharIndex((currentCharIndex) => currentCharIndex + 1);
+        setExtraCharsTyped((extraCharsTyped) => extraCharsTyped + 1); //& increamenting the extra chars typed
+        setTotalCharsTyped((totalCharsTyped) => totalCharsTyped + 1); //& increamenting the total chars typed
       }
 
       return;
@@ -150,8 +201,12 @@ function Typingbox() {
       e.key === currentChars[currentCharIndex].innerText
     ) {
       currentChars[currentCharIndex].className = "correct";
+      setCorrectCharsTyped((correctChars) => correctChars + 1); //&incrementing the correct character count
+      setTotalCharsTyped((totalCharsTyped) => totalCharsTyped + 1); //& incrementing the total characters typed count
     } else if (currentCharIndex < currentChars.length) {
       currentChars[currentCharIndex].className = "incorrect";
+      setIncorrectCharsTyped((incorrectChars) => incorrectChars + 1); //&incrementing the incorrect character count
+      setTotalCharsTyped((totalCharsTyped) => totalCharsTyped + 1); //& incrementing the total characters typed count
     }
 
     //`moving the cursor
@@ -184,7 +239,16 @@ function Typingbox() {
       <UpperMenu countDown={countDown} />
       {/* //`choosing between the typing test screen and the test end screen */}
       {testEnd ? (
-        <h1 className="test-over">Test Over</h1>
+        <Stats
+          wpm={calculateWPM()}
+          rawWpm={calculateRawWPM()}
+          correctChars={correctCharsTyped}
+          incorrectChars={incorrectCharsTyped}
+          missedChars={missedChars}
+          extraChars={extraCharsTyped}
+          accuracy={calculateAccuracy() ? calculateAccuracy() : 0}
+          graphData={graphData}
+        />
       ) : (
         <div className="words">
           {words.map((word, index) => {

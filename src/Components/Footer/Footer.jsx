@@ -16,8 +16,6 @@ function Footer() {
     localStorage.setItem("theme", JSON.stringify(e.value));
   };
 
-  console.log(theme);
-
   return (
     <div className="footer">
       <div className="links">Links</div>

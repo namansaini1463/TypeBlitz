@@ -3,10 +3,10 @@ import { Themes } from "../Utils/Themes";
 
 const ThemeContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const ThemeContextProvider = ({ children }) => {
   const defaultTheme =
     JSON.parse(localStorage.getItem("theme")) || Themes[0].value;
-  console.log(defaultTheme);
 
   const [theme, setTheme] = useState(defaultTheme);
 

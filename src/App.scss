@@ -2,6 +2,7 @@
 
 * {
   font-family: "Kode Mono", monospace;
+
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -10,12 +11,11 @@
 }
 
 body {
-  font-size: 1.8rem;
-
   transition: all 250ms linear;
 
   .App {
     height: 100vh;
+    font-size: 1.8rem;
 
     display: flex;
     flex-direction: column;

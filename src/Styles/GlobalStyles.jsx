@@ -83,5 +83,7 @@ body{
     }
   }
 
-
+  .stats{
+    color:${({ theme }) => theme.cursor};
+  }
 `;

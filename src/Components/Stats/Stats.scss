@@ -1,0 +1,34 @@
+.stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 80vw;
+
+  gap: 5rem;
+}
+
+.left-stats {
+  padding: 1.2rem 0;
+}
+
+.right-stats {
+  flex: 1;
+}
+
+.wpm-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.box-container {
+  padding: 0.8rem 2rem;
+}
+
+.all-chars-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

@@ -1,0 +1,26 @@
+.user-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  width: 40vw;
+  margin: 0 auto;
+
+  .user-profile {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .user-tests {
+    display: flex;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+.goto {
+  height: fit-content;
+  width: fit-content;
+}
