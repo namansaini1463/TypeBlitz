@@ -153,7 +153,7 @@ function Stats({
               arrow
               TransitionComponent={Zoom}
               TransitionProps={{ timeout: 400 }}
-              title={<h2 style={{ color: "lightblue" }}>Correct Characters</h2>}
+              title={<h2 style={{ color: "lightblue" }}>Correct </h2>}
             >
               <div className="correct-chars">{correctChars}</div>
             </Tooltip>
@@ -161,9 +161,7 @@ function Stats({
               arrow
               TransitionComponent={Zoom}
               TransitionProps={{ timeout: 400 }}
-              title={
-                <h2 style={{ color: "lightblue" }}>Incorrect Characters</h2>
-              }
+              title={<h2 style={{ color: "lightblue" }}>Incorrect </h2>}
             >
               <div className="incorrect-chars">{incorrectChars}</div>
             </Tooltip>
@@ -171,7 +169,7 @@ function Stats({
               arrow
               TransitionComponent={Zoom}
               TransitionProps={{ timeout: 400 }}
-              title={<h2 style={{ color: "lightblue" }}>Missed Characters</h2>}
+              title={<h2 style={{ color: "lightblue" }}>Missed </h2>}
             >
               <div className="missed-chars">{missedChars}</div>
             </Tooltip>
@@ -179,7 +177,7 @@ function Stats({
               arrow
               TransitionComponent={Zoom}
               TransitionProps={{ timeout: 400 }}
-              title={<h2 style={{ color: "lightblue" }}>Extra Characters</h2>}
+              title={<h2 style={{ color: "lightblue" }}>Extra </h2>}
             >
               <div className="extra-chars">{extraChars}</div>
             </Tooltip>

@@ -1,5 +1,5 @@
 .account-modal {
-  width: 25vw;
+  width: 500px;
 
   padding: 2.5rem 2rem 0.8rem;
   border-radius: 5px;
@@ -10,4 +10,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .account-modal {
+    margin: 2rem;
+    width: fit-content;
+  }
 }

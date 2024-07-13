@@ -29,7 +29,6 @@ function User() {
       .orderBy("timeStamp", "desc")
       .get()
       .then((snapshot) => {
-        console.log(snapshot);
         snapshot.docs.forEach((doc) => {
           tempData.push({ ...doc.data() });
           tempGraphData.push([
@@ -79,7 +78,6 @@ function User() {
   const calculateAvgAccuracy = () => {
     let totalAccuracy = 0;
     userData.map((data) => {
-      console.log(data.accuracy);
       totalAccuracy += Math.round(data.accuracy);
     });
 

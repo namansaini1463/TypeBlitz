@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import { useMyTheme } from "../../Context/ThemeContext";
 import { useState } from "react";
 import { toast, Bounce } from "react-toastify";
-
 import { auth } from "../../firebaseConfig";
 import ErrorMappings from "../../Utils/Errors";
 
@@ -17,6 +16,7 @@ export default function SignUpForm({ handleModalClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!email || !password || !confirmPassword) {
       toast.warning("Please fill all the fields!", {
         position: "top-right",
@@ -78,7 +78,6 @@ export default function SignUpForm({ handleModalClose }) {
             transition: Bounce,
           }
         );
-        console.log(err);
       });
   };
 
@@ -92,7 +91,6 @@ export default function SignUpForm({ handleModalClose }) {
           label="Email Address"
           name="email"
           type="email"
-          autoFocus
           sx={{
             input: { color: `${theme.theme.textColor}` },
             label: { color: `${theme.theme.textColor}` },

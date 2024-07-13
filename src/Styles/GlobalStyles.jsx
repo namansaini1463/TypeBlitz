@@ -86,4 +86,8 @@ body{
   .stats{
     color:${({ theme }) => theme.cursor};
   }
+
+  .user-card{
+    background-color: ${({ theme }) => theme.cursor};
+  }
 `;

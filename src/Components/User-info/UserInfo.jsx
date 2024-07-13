@@ -11,7 +11,18 @@ function UserInfo({ totalTestsTaken, avgWPM, avgAccuracy }) {
   const navigate = useNavigate();
   const theme = useMyTheme();
 
-  // console.log(auth);
+  const getDisplayName = () => {
+    const email = user.email;
+    let i = 0;
+    for (; i < email.length; i++) {
+      if (email[i] === "@") {
+        break;
+      }
+    }
+
+    const username = email.slice(0, 1).toUpperCase() + email.slice(1, i);
+    return username;
+  };
 
   return (
     <div
@@ -41,7 +52,7 @@ function UserInfo({ totalTestsTaken, avgWPM, avgAccuracy }) {
             <AccountCircle sx={{ fontSize: "6rem" }} />
           </div>
           <div className="user-info">
-            <div className="user-username">Alectus</div>
+            <div className="user-username">{getDisplayName()}</div>
             <div className="user-email">{user.email}</div>
           </div>
         </div>
@@ -52,11 +63,11 @@ function UserInfo({ totalTestsTaken, avgWPM, avgAccuracy }) {
           </div>
           <div className="user-avgWPM">
             <h6>Average WPM</h6>
-            <h5>{avgWPM}</h5>
+            <h5>{avgWPM.toFixed(2)}</h5>
           </div>
           <div className="user-avgAccuracy">
             <h6>Average Accuracy</h6>
-            <h5>{avgAccuracy}%</h5>
+            <h5>{avgAccuracy.toFixed(2)}%</h5>
           </div>
         </div>
       </div>

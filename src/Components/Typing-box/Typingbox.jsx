@@ -44,7 +44,6 @@ function Typingbox() {
   //` Function to start the test as soon as the user starts typing
   const startTimer = () => {
     const interval = setInterval(timer, 1000);
-    // const interval = setInterval(timer, 100);
     setIntervalId(interval);
 
     function timer() {
@@ -236,7 +235,13 @@ function Typingbox() {
 
   return (
     <div className="type-box" onClick={focusInput}>
-      <UpperMenu countDown={countDown} />
+      {!testEnd && <UpperMenu countDown={countDown} />}
+      <input
+        type="text"
+        onKeyDown={handleUserInput}
+        className="hidden-input"
+        ref={inputRef}
+      />
       {/* //`choosing between the typing test screen and the test end screen */}
       {testEnd ? (
         <Stats
@@ -264,12 +269,6 @@ function Typingbox() {
           })}
         </div>
       )}
-      <input
-        type="text"
-        onKeyDown={handleUserInput}
-        className="hidden-input"
-        ref={inputRef}
-      />
     </div>
   );
 }

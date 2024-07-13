@@ -21,8 +21,6 @@ function UserDataTable({ userData }) {
     fontSize: "2rem",
   };
 
-  console.log(...userData);
-
   return (
     <div className="user-table">
       <TableContainer>
@@ -74,15 +72,6 @@ function UserDataTable({ userData }) {
           </TableBody>
         </Table>
       </TableContainer>
-
-      {/* {userData.map((data) => {
-        return (
-          <>
-            <p>{data.id}</p>
-            <p>{data.missedChars}</p>
-          </>
-        );
-      })} */}
     </div>
   );
 }

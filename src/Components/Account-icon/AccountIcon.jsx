@@ -121,6 +121,19 @@ function AccountIcon() {
       });
   };
 
+  const getDisplayName = (user) => {
+    const email = user.email;
+    let i = 0;
+    for (; i < email.length; i++) {
+      if (email[i] === "@") {
+        break;
+      }
+    }
+
+    const username = email.slice(0, 1).toUpperCase() + email.slice(1, i);
+    return username;
+  };
+
   return (
     <div>
       <div className="username-wrapper">
@@ -132,12 +145,28 @@ function AccountIcon() {
             }}
           />
         </IconButton>
-        <h4
-          onClick={handleModalOpen}
-          style={{ marginRight: "1rem", cursor: "pointer" }}
+        <Tooltip
+          arrow
+          TransitionComponent={Zoom}
+          TransitionProps={{ timeout: 400 }}
+          title={
+            <h2 style={{ color: "lightblue" }}>
+              {" "}
+              {user ? "My Profile" : "Login"}
+            </h2>
+          }
         >
-          {user ? "Username" : "LOGIN"}
-        </h4>
+          <h4
+            onClick={handleModalOpen}
+            style={{ marginRight: "1rem", cursor: "pointer" }}
+          >
+            {user
+              ? !user.displayName
+                ? getDisplayName(user)
+                : user.displayName
+              : "LOGIN"}
+          </h4>
+        </Tooltip>
         {user && (
           <Tooltip
             arrow

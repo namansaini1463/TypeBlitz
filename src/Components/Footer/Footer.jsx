@@ -1,10 +1,11 @@
 import ReactSelect from "react-select";
-import { useState } from "react";
 
 import "./Footer.scss";
 
 import { Themes } from "../../Utils/Themes";
 import { useMyTheme } from "../../Context/ThemeContext";
+import { GitHub, LinkedIn } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 
 function Footer() {
   const { theme, setTheme } = useMyTheme();
@@ -16,9 +17,50 @@ function Footer() {
     localStorage.setItem("theme", JSON.stringify(e.value));
   };
 
+  const openGithubProfile = () => {
+    const redirect = document.createElement("a");
+    redirect.href = "https://github.com/namansaini1463";
+    redirect.target = "_blank";
+    redirect.click();
+
+    return;
+  };
+
+  const openLinkedInProfile = () => {
+    const redirect = document.createElement("a");
+    redirect.href = "https://www.linkedin.com/in/namansaini1463/";
+    redirect.target = "_blank";
+    redirect.click();
+    return;
+  };
+
   return (
     <div className="footer">
-      <div className="links">Links</div>
+      <div className="links">
+        <div className="github-link">
+          <IconButton onClick={openGithubProfile}>
+            <GitHub
+              sx={{
+                fontSize: "2rem",
+                color: theme.textColor,
+              }}
+            />
+          </IconButton>
+        </div>
+        <div className="linkedin-link">
+          <IconButton onClick={openLinkedInProfile}>
+            <LinkedIn
+              sx={{
+                fontSize: "2rem",
+                color: theme.textColor,
+              }}
+            />
+          </IconButton>
+        </div>
+        <div>
+          <h6>Made with ❤️ by Naman Saini</h6>
+        </div>
+      </div>
       <div className="themes-select">
         <ReactSelect
           onChange={handleSelectChange}
@@ -28,6 +70,7 @@ function Footer() {
           isSearchable={false}
           defaultValue={{ label: theme.label, value: theme.value }}
           styles={{
+            width: "fit-content",
             control: (baseStyles) => ({
               ...baseStyles,
               backgroundColor: theme.background,
@@ -53,21 +96,6 @@ function Footer() {
               color: theme.textColor,
             }),
           }}
-
-          // styles={{
-          //   control: (baseStyles) => ({
-          //     ...baseStyles,
-          //     backgroundColor: theme.background,
-          //   }),
-          //   option: (provided) => ({
-          //     ...provided,
-          //     color: theme.correct,
-          //   }),
-          //   singleValue: (provided) => ({
-          //     ...provided,
-          //     color: "red",
-          //   }),
-          // }}
         />
       </div>
     </div>
