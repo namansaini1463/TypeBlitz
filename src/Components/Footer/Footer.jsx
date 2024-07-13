@@ -19,7 +19,7 @@ function Footer() {
 
   const openGithubProfile = () => {
     const redirect = document.createElement("a");
-    redirect.href = "https://github.com/namansaini1463";
+    redirect.href = "https://github.com/namansaini1463/TypeBlitz";
     redirect.target = "_blank";
     redirect.click();
 
